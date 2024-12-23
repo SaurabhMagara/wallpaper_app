@@ -1,44 +1,25 @@
-import { DownloadPicture } from "@/components/DowloadPicture";
-import ImageCard from "@/components/ImageCard";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
-import { ThemedView } from "@/components/ThemedView";
-import useWallpapers, { Wallpaper } from "@/hooks/useWallpapers";
-import { useState } from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
-import { FlatList } from "react-native-gesture-handler";
+import { SplitView } from "@/components/SplitView";
+import useWallpapers from "@/hooks/useWallpapers";
+import { Image, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function explore() {
-    const wallpapers = useWallpapers();
-    const [selectedWallpaper, setSelectedWallpaper] = useState<null | Wallpaper>(null);
+    const wallpapers = useWallpapers(); 
     return (
         <SafeAreaView style={{ flex: 1 }}>
-            <ParallaxScrollView headerBackgroundColor={{ dark: "white", light: "white" }} headerImage={<Image style={{ flex: 1 }} source={{ uri: wallpapers[0].url ?? "" }} />}>
-                <ThemedView style={style.container}>
-                    <ThemedView style={style.innerContainer}>
-                        <FlatList
-                            data={wallpapers.filter((_, index) => index %2 === 1)}
-                            renderItem={({ item }) => <View style={style.imageContainer}><ImageCard wallpaper={item}
-                            onPress={()=>setSelectedWallpaper(item)} /></View>}
-                            keyExtractor={item => item.name}
-                        />
-                    </ThemedView>
-                    <ThemedView style={style.innerContainer}>
-                        <FlatList
-                            data={wallpapers.filter((_, index)=> index %2 === 0)}
-                            renderItem={({ item }) => <View style={style.imageContainer}><ImageCard wallpaper={item} 
-                            onPress ={()=> setSelectedWallpaper(item)} /></View>}
-                            keyExtractor={item => item.name} 
-                        />
-                    </ThemedView>
-                </ThemedView>
+            <ParallaxScrollView
+                headerBackgroundColor={{ dark: "white", light: "white" }}
+                headerImage={
+                    <Image style={{ flex: 1 }} source={{ uri: wallpapers[0].url ?? "" }} />
+                }>
+                <SplitView wallpaper={wallpapers} />
             </ParallaxScrollView>
-            {selectedWallpaper !== null && <DownloadPicture wallpaper={selectedWallpaper} onClose={()=>setSelectedWallpaper(null)}/>}
         </SafeAreaView >
     )
 }
 
-const style = StyleSheet.create({
+export const style = StyleSheet.create({
     container: {
         flex: 1,
         display: "flex",

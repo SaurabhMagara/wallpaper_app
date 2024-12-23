@@ -1,30 +1,43 @@
+import { SplitView } from '@/components/SplitView';
+import { useLibraryWallpaper, useLikedWallpaper, useSuggestedWallpaper } from '@/hooks/useWallpapers';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { Text, View } from 'react-native';
+import { StyleSheet,  View } from 'react-native';
 
 const Tab = createMaterialTopTabNavigator();
 
-export default function foryou () {
+export default function foryou() {
   return (
     <Tab.Navigator>
-      <Tab.Screen name="Suggested" component={Suggested} />
-      <Tab.Screen name="Liked" component={Liked} />
-      <Tab.Screen name="Library" component={Library} />
+      <Tab.Screen name="Suggested" component={SuggestedScreen} />
+      <Tab.Screen name="Liked" component={LikedScreen} />
+      <Tab.Screen name="Library" component={LibraryScreen} />
     </Tab.Navigator>
   );
 }
 
-function Suggested (){
-    return <View>
-        <Text>Hello from suggested</Text>
-    </View>
+function SuggestedScreen() {
+  const wallpaper = useSuggestedWallpaper();
+
+  return <View style={styles.container}>
+    <SplitView wallpaper={wallpaper} />
+  </View>
 }
-function Liked (){
-    return <View>
-        <Text>Hello from Liked</Text>
-    </View>
+function LikedScreen() {
+  const wallpaper = useLikedWallpaper();
+
+  return <View style={styles.container}>
+    <SplitView wallpaper={wallpaper} />
+  </View>
 }
-function Library (){
-    return <View>
-        <Text>Hello from Library </Text>
-    </View>
+function LibraryScreen() {
+  const wallpaper = useLibraryWallpaper();
+  return <View style={styles.container}>
+    <SplitView wallpaper={wallpaper} />
+  </View>
 }
+
+const styles = StyleSheet.create({
+  container :{
+    flex : 1
+  }
+})

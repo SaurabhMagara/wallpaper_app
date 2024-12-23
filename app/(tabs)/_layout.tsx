@@ -15,7 +15,8 @@ export default function TabLayout() {
         name="index"
         options={{
           title: 'Explore',
-          tabBarIcon: ({ color }) => <FontAwesome size={28} name="stack-overflow" color={color} />,
+          tabBarIcon: ({ color }) => <FontAwesome size={28} name="stack-overflow" color={color}
+           />,
         }}
       />
       <Tabs.Screen
