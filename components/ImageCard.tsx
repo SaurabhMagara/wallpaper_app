@@ -4,6 +4,9 @@ import { ThemedText } from "./ThemedText";
 import { Ionicons } from "@expo/vector-icons";
 import { Colors } from "@/constants/Colors";
 
+//image cards component
+//takes wallpaper means image info
+// onPress for waht to do when image is clicked 
 export default function ImageCard({ wallpaper, onPress }: { wallpaper: Wallpaper, onPress: () => void }) {
     const Theme = useColorScheme() ?? 'light';
     return <Pressable onPress={onPress} >
@@ -33,8 +36,8 @@ const style = StyleSheet.create({
         color: "white"
     },
     labelContainer: {
-        position: "absolute",
-        backgroundColor: "rgba(0, 0, 0, 0.5)",
+        position: "absolute", // for placing title at bottom 
+        backgroundColor: "rgba(0, 0, 0, 0.5)", // making image bottom bar tarnsparent
         bottom: 0,
         width: "100%",
         flexDirection: "row",

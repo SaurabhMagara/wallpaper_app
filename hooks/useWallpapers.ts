@@ -1,28 +1,36 @@
+//type for exported wallapaper that is shown on expore page
 export interface Wallpaper {
     url: string,
     name: string
 };
 
+// Type for wallpaper
 interface FullWallpaper extends Wallpaper {
     liked : boolean,
     suggested : boolean,
     library : boolean
 }
 
+// filter wallpaper that is suggested for you
 export function useSuggestedWallpaper(){
     const Wallpaper = useWallpapers();
     return Wallpaper.filter(walls=> walls.suggested);
 }
+
+// filtering wallpapers that are liked
 export function useLikedWallpaper(){
     const Wallpaper = useWallpapers();
     return Wallpaper.filter(walls => walls.liked);
 }
 
+// filtering wallpapers that are available in library
 export function useLibraryWallpaper(){
     const Wallpaper = useWallpapers();
     return Wallpaper.filter(walls => walls.library);
 }
 
+
+// useWallpaper hook for exporting wallpapers in App
 export default function useWallpapers(): FullWallpaper[] {
     return [
         {

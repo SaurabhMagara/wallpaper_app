@@ -1,5 +1,5 @@
 import React, { useCallback, useRef } from 'react';
-import { Button, Image, Pressable, StyleSheet, Text, useColorScheme, View } from 'react-native';
+import { Image, Pressable, StyleSheet, useColorScheme, View } from 'react-native';
 import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
 import { Wallpaper } from '@/hooks/useWallpapers';
 import { Ionicons } from '@expo/vector-icons';
@@ -8,6 +8,8 @@ import { ThemedText } from './ThemedText';
 import { ThemedView } from './ThemedView';
 // import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
+
+//Bottom sheet that appeares from bottom
 export const DownloadPicture = ({ onClose, wallpaper }:
     { onClose: () => void, wallpaper: Wallpaper }) => {
     // ref
@@ -15,7 +17,7 @@ export const DownloadPicture = ({ onClose, wallpaper }:
     const Theme = useColorScheme() ?? 'light';
 
 
-    // callbacks
+    // callbacks --> shows handle is triggered
     const handleSheetChanges = useCallback((index: number) => {
         console.log('handleSheetChanges', index);
     }, []);

@@ -1,8 +1,10 @@
 import { SplitView } from '@/components/SplitView';
+import { ThemedView } from '@/components/ThemedView';
 import { useLibraryWallpaper, useLikedWallpaper, useSuggestedWallpaper } from '@/hooks/useWallpapers';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { StyleSheet,  View } from 'react-native';
 
+// making top tabs which are slidable
 const Tab = createMaterialTopTabNavigator();
 
 export default function foryou() {
@@ -15,25 +17,30 @@ export default function foryou() {
   );
 }
 
+//suggested screen 
 function SuggestedScreen() {
   const wallpaper = useSuggestedWallpaper();
 
-  return <View style={styles.container}>
+  return <ThemedView style={styles.container}>
     <SplitView wallpaper={wallpaper} />
-  </View>
+  </ThemedView>
 }
+
+//liked screen
 function LikedScreen() {
   const wallpaper = useLikedWallpaper();
 
-  return <View style={styles.container}>
+  return <ThemedView style={styles.container}>
     <SplitView wallpaper={wallpaper} />
-  </View>
+  </ThemedView>
 }
+
+//Library screen
 function LibraryScreen() {
   const wallpaper = useLibraryWallpaper();
-  return <View style={styles.container}>
+  return <ThemedView style={styles.container}>
     <SplitView wallpaper={wallpaper} />
-  </View>
+  </ThemedView>
 }
 
 const styles = StyleSheet.create({

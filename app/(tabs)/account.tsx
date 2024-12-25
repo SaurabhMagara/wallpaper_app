@@ -20,6 +20,7 @@ export default function account() {
     )
 }
 
+//for showing headers
 function Header() {
     return <ThemedView style={styles.topbar}>
         <ThemedText style={styles.textBig}> Panels</ThemedText>
@@ -27,6 +28,8 @@ function Header() {
     </ThemedView>
 }
 
+
+// Theme selctingg buttons
 function ThemeSelector() {
     return <ThemedView style={{ padding: 20 }}>
         <ThemedText style={styles.textBig}> Settings</ThemedText>
@@ -39,10 +42,12 @@ function ThemeSelector() {
     </ThemedView>
 }
 
+
+// Theme buttons to set theme dark, light, System
 function ThemedButton({ title, selected, colorScheme }: { title: string, selected: boolean, colorScheme: "dark" | "light" | null }) {
     const theme = useColorScheme();
-    return <Pressable
-        onPress={() => Appearance.setColorScheme(colorScheme)}
+    return <Pressable // Pressable makes element pressable
+        onPress={() => Appearance.setColorScheme(colorScheme)} // onPress event -> when button is clicked
         style={{
             padding: 10,
             borderWidth: 1,
@@ -55,6 +60,8 @@ function ThemedButton({ title, selected, colorScheme }: { title: string, selecte
     </Pressable>
 }
 
+
+//Tow login buttons
 function LogInButtons() {
     return <>
         <AuthButton label="Sign in" icon={"logo-google"} />
@@ -62,6 +69,8 @@ function LogInButtons() {
     </>
 }
 
+
+//Individual button
 function AuthButton({ label, icon }: {
     label: string,
     icon: any
@@ -95,6 +104,9 @@ function AuthButton({ label, icon }: {
     </Pressable>
 }
 
+
+//Styles for every component 
+//Use Stylesheet.create for defining styles or creating styles
 const styles = StyleSheet.create({
     textBig: {
         fontSize: 23,
