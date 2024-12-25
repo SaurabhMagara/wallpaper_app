@@ -1,19 +1,29 @@
 import { SplitView } from '@/components/SplitView';
 import { ThemedView } from '@/components/ThemedView';
+import { Colors } from '@/constants/Colors';
 import { useLibraryWallpaper, useLikedWallpaper, useSuggestedWallpaper } from '@/hooks/useWallpapers';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { StyleSheet,  View } from 'react-native';
+import { SafeAreaView, StyleSheet, useColorScheme } from 'react-native';
 
 // making top tabs which are slidable
 const Tab = createMaterialTopTabNavigator();
 
 export default function foryou() {
+  const theme = useColorScheme() ?? "light";
   return (
-    <Tab.Navigator>
-      <Tab.Screen name="Suggested" component={SuggestedScreen} />
-      <Tab.Screen name="Liked" component={LikedScreen} />
-      <Tab.Screen name="Library" component={LibraryScreen} />
-    </Tab.Navigator>
+    <SafeAreaView style={styles.container}>
+      <Tab.Navigator style={{flex : 1}}
+       screenOptions={{
+        tabBarActiveTintColor : Colors[theme].tint,
+        tabBarStyle :{
+          backgroundColor : Colors[theme].background
+        }
+      }}>
+        <Tab.Screen name="Suggested" component={SuggestedScreen} />
+        <Tab.Screen name="Liked" component={LikedScreen} />
+        <Tab.Screen name="Library" component={LibraryScreen} />
+      </Tab.Navigator>
+    </SafeAreaView>
   );
 }
 
@@ -44,7 +54,7 @@ function LibraryScreen() {
 }
 
 const styles = StyleSheet.create({
-  container :{
-    flex : 1
+  container: {
+    flex: 1
   }
 })

@@ -1,26 +1,44 @@
-import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { SplitView } from "@/components/SplitView";
 import useWallpapers from "@/hooks/useWallpapers";
-import { Image, StyleSheet } from "react-native";
+import { Dimensions, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import Carousel from "react-native-reanimated-carousel";
+import { ThemedText } from "@/components/ThemedText";
+import { ThemedView } from "@/components/ThemedView";
 
-// Entry point of app -< explore page
+// Entry point of app -> explore page
 export default function explore() {
     // using use Wallpaper to show wallpaper in explore page
-    const wallpapers = useWallpapers(); 
-
-    //ParallaxScroll used
+    const wallpapers = useWallpapers();
+    const width = Dimensions.get("window").width
 
     // safeareaview placed contents in safe area where it can easily seen
     return (
         <SafeAreaView style={{ flex: 1 }}>
-            <ParallaxScrollView
-                headerBackgroundColor={{ dark: "white", light: "white" }}
-                headerImage={
-                    <Image style={{ flex: 1 }} source={{ uri: wallpapers[0].url ?? "" }} />
-                }>
-                <SplitView wallpaper={wallpapers} />
-            </ParallaxScrollView>
+            <View style={{flex: 1}}>
+
+                <Carousel
+                    width={width}
+                    height={300}
+                    // autoPlay={true}
+                    data={[...new Array(6).keys()]}
+                    onSnapToItem={(index) => console.log('current index:', index)}
+                    renderItem={({ index }) => (
+                        <View
+                            style={{
+                                flex: 1,
+                                borderWidth: 1,
+                                justifyContent: 'center',
+                            }}
+                        >
+                            <Text style={{ fontSize: 30, textAlign: "center", height: 300 }}>
+                                {index}
+                            </Text>
+                        </View>
+                    )}
+                />
+            </View>
+            {/* <SplitView wallpaper={wallpapers} /> */}
         </SafeAreaView >
     )
 }

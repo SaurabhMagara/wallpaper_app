@@ -10,24 +10,22 @@ import { DownloadPicture } from "./DowloadPicture";
 export function SplitView({ wallpaper }: { wallpaper: Wallpaper[] }) {
     const [selectedWallpaper, setSelectedWallpaper] = useState<null | Wallpaper>(null)
     return <>
-        <ThemedView style={style.container}>
-            <ThemedView style={style.innerContainer}>
-                <FlatList
-                    data={wallpaper.filter((_, index) => index % 2 === 0)}
-                    renderItem={({ item }) => <View style={style.imageContainer}><ImageCard wallpaper={item}
-                        onPress={() => setSelectedWallpaper(item)} /></View>}
-                    keyExtractor={item => item.name}
-                />
+        <FlatList
+            data={wallpaper.filter((_, index) => index % 2 === 0).map((_, index) => [wallpaper[index], wallpaper[index + 1]])}
+            renderItem={({ item: [first, second] }) => <ThemedView style={style.container}>
+                <ThemedView style={style.innerContainer}>
+                    <View style={style.imageContainer}><ImageCard wallpaper={first}
+                        onPress={() => setSelectedWallpaper(first)} /></View>
+                </ThemedView>
+                <ThemedView style={style.innerContainer}>
+                    <View style={style.imageContainer}><ImageCard wallpaper={first}
+                        onPress={() => setSelectedWallpaper(second)} /></View>
+                </ThemedView>
             </ThemedView>
-            <ThemedView style={style.innerContainer}>
-                <FlatList
-                    data={wallpaper.filter((_, index) => index % 2 === 1)}
-                    renderItem={({ item }) => <View style={style.imageContainer}><ImageCard wallpaper={item}
-                        onPress={() => setSelectedWallpaper(item)} /></View>}
-                    keyExtractor={item => item.name}
-                />
-            </ThemedView>
-        </ThemedView>
+            }
+            keyExtractor={item => item[0].name}
+        />
+
         {selectedWallpaper && <DownloadPicture wallpaper={selectedWallpaper} onClose={() => setSelectedWallpaper(null)} />}
     </>
 }
