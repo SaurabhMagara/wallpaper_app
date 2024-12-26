@@ -17,7 +17,7 @@ export default function TabLayout() {
         name="foryou"
         options={{
           title: 'For you',
-          tabBarIcon: ({ color }) => <FontAwesome size={28} name="code" color={color} />,
+          tabBarIcon: ({ color }) => <FontAwesome size={28} name="home" color={color} />,
         }}
       />
       <Tabs.Screen
@@ -32,7 +32,7 @@ export default function TabLayout() {
         name="account"
         options={{
           title: 'Account',
-          tabBarIcon: ({ color }) => <FontAwesome size={28} name="rocket" color={color} />,
+          tabBarIcon: ({ color }) => <FontAwesome size={28} name="user" color={color} />,
         }}
       />
 

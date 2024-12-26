@@ -17,6 +17,10 @@ export default function foryou() {
         tabBarActiveTintColor : Colors[theme].tint,
         tabBarStyle :{
           backgroundColor : Colors[theme].background
+        },
+        tabBarIndicatorStyle : {
+          backgroundColor : Colors[theme].indicator,
+          height : 5
         }
       }}>
         <Tab.Screen name="Suggested" component={SuggestedScreen} />

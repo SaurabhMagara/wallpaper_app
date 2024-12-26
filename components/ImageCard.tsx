@@ -11,9 +11,9 @@ export default function ImageCard({ wallpaper, onPress }: { wallpaper: Wallpaper
     const Theme = useColorScheme() ?? 'light';
     return <Pressable onPress={onPress} >
         <View>
-            <Image source={{ uri: wallpaper.url }} style={style.image} />
+            <Image source={{ uri: wallpaper?.url }} style={style.image} />
             <View style={style.labelContainer}>
-                <ThemedText style={style.label}>{wallpaper.name}</ThemedText>
+                <ThemedText style={style.label}>{wallpaper?.name}</ThemedText>
                 <View style={style.iconContainer}>
                     <Ionicons name="heart" size={20} color={Theme === "light" ? Colors.light.icon : Colors.dark.icon} />
                 </View>

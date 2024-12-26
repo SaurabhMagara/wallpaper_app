@@ -14,6 +14,7 @@ export default function account() {
                 <ThemedView>
                     <LogInButtons />
                     <ThemeSelector />
+                    <About />
                 </ThemedView>
             </ThemedView>
         </SafeAreaView>
@@ -24,15 +25,36 @@ export default function account() {
 function Header() {
     return <ThemedView style={styles.topbar}>
         <ThemedText style={styles.textBig}> Panels</ThemedText>
-        <ThemedText style={{ paddingLeft: 10 }}>Sign in to save your data</ThemedText>
+        <ThemedText style={{ paddingLeft: 10, paddingTop : 5 }}>Sign in to save your data</ThemedText>
     </ThemedView>
 }
 
+function About() {
+    return (
+        <ThemedView style={styles.topbar} >
+            <ThemedText style={{paddingTop : 1, fontSize : 25, fontWeight : "600"}}> About</ThemedText>
+            <ThemedView style={{ marginTop: 10 }}>
+                <Pressable>
+                    <ThemedText style={{ paddingLeft: 10, margin:10, fontSize : 17 }}>Account</ThemedText>
+                </Pressable>
+                <Pressable>
+                    <ThemedText style={{ paddingLeft: 10, margin:10, fontSize : 17 }}>Privacy Policy</ThemedText>
+                </Pressable>
+                <Pressable>
+                    <ThemedText style={{ paddingLeft: 10, margin:10, fontSize : 17 }}>Terms of Services</ThemedText>
+                </Pressable>
+                <Pressable>
+                    <ThemedText style={{ paddingLeft: 10, margin:10, fontSize : 17 }}>Licenses</ThemedText>
+                </Pressable>
+            </ThemedView>
+        </ThemedView>
+    )
+}
 
 // Theme selctingg buttons
 function ThemeSelector() {
-    return <ThemedView style={{ padding: 20 }}>
-        <ThemedText style={styles.textBig}> Settings</ThemedText>
+    return <ThemedView style={styles.topbar}>
+        <ThemedText style={{fontSize : 25, fontWeight : "600", paddingTop : 12}}> Settings</ThemedText>
         <ThemedText style={{ paddingLeft: 10 }}>Theme</ThemedText>
         <ThemedView style={{ flexDirection: "row", justifyContent: "space-between", marginTop: 10 }}>
             <ThemedButton title={"Dark"} selected={false} colorScheme={"dark"} />
@@ -63,10 +85,10 @@ function ThemedButton({ title, selected, colorScheme }: { title: string, selecte
 
 //Tow login buttons
 function LogInButtons() {
-    return <>
+    return <View style={{display : "flex", gap : 5}}>
         <AuthButton label="Sign in" icon={"logo-google"} />
         <AuthButton label="Sign in" icon={"logo-apple"} />
-    </>
+    </View>
 }
 
 
@@ -109,11 +131,13 @@ function AuthButton({ label, icon }: {
 //Use Stylesheet.create for defining styles or creating styles
 const styles = StyleSheet.create({
     textBig: {
-        fontSize: 23,
-        fontWeight: "600"
+        fontSize: 25,
+        fontWeight: "600",
+        paddingTop : 25
     },
     topbar: {
-        padding: 30
+        padding: 20,
+        paddingTop : 30
     },
     themeSelectorContainer: {
         flex: 1

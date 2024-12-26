@@ -7,10 +7,17 @@ import ImageCard from "./ImageCard";
 import { View } from "react-native";
 import { DownloadPicture } from "./DowloadPicture";
 
-export function SplitView({ wallpaper }: { wallpaper: Wallpaper[] }) {
+export function SplitView({ wallpaper, onScroll }: { 
+    wallpaper: Wallpaper[],
+    onScroll? : (yOffset : number) => void
+}) {
     const [selectedWallpaper, setSelectedWallpaper] = useState<null | Wallpaper>(null)
     return <>
         <FlatList
+            onScroll={(e)=>{
+                let yOffset = e.nativeEvent.contentOffset.y /1;
+                onScroll?.(yOffset);
+            }}
             data={wallpaper.filter((_, index) => index % 2 === 0).map((_, index) => [wallpaper[index], wallpaper[index + 1]])}
             renderItem={({ item: [first, second] }) => <ThemedView style={style.container}>
                 <ThemedView style={style.innerContainer}>
@@ -18,7 +25,7 @@ export function SplitView({ wallpaper }: { wallpaper: Wallpaper[] }) {
                         onPress={() => setSelectedWallpaper(first)} /></View>
                 </ThemedView>
                 <ThemedView style={style.innerContainer}>
-                    <View style={style.imageContainer}><ImageCard wallpaper={first}
+                    <View style={style.imageContainer}><ImageCard wallpaper={second}
                         onPress={() => setSelectedWallpaper(second)} /></View>
                 </ThemedView>
             </ThemedView>

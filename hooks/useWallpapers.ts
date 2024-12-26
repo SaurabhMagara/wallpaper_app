@@ -43,7 +43,7 @@ export default function useWallpapers(): FullWallpaper[] {
         {
             url: "https://images.pexels.com/photos/19975991/pexels-photo-19975991/free-photo-of-laughing-woman-in-fur-hat-sitting-on-mans-back-under-snowfall.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
             name: "Heritage",
-            liked : false,
+            liked : true,
             suggested : true,
             library : true
         },
